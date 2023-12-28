@@ -1,0 +1,53 @@
+# general
+gpu_id: 0
+use_gpu: True
+seed: 212
+state: INFO
+reproducibility: True
+data_path: 'dataset/'
+checkpoint_dir: 'saved'
+show_progress: True
+save_dataset: False
+save_dataloaders: False
+
+# dataset
+load_col:
+    inter: [session_id, song_id, timestamp]
+    item: [song_id]
+USER_ID_FIELD: session_id
+ITEM_ID_FIELD: song_id
+TIME_FIELD: timestamp
+MAX_ITEM_LIST_LENGTH: 5
+
+# Filtering
+user_inter_num_interval: "[1,inf)"
+item_inter_num_interval: "[1,inf)"
+
+# Model
+selected_features: [song_id]
+dropout_prob: 0.1
+# loss_type: 'BPR'
+
+# training settings
+epochs: 50
+train_batch_size: 2048
+eval_step: 1
+stopping_step: 5
+
+# evaluation settings
+eval_args:
+  split: {'LS': 'valid_only'}
+  group_by: user
+  order: TO
+  mode: full
+
+repeatable: True
+metrics: ["Recall", "NDCG"]
+topk: [5]
+valid_metric: NDCG@5
+eval_batch_size: 2048
+loss_decimal_place: 4
+metric_decimal_place: 4
+
+# train_neg_sample_args: {'distribution': 'popularity', 'sample_num': 5}
+train_neg_sample_args:
