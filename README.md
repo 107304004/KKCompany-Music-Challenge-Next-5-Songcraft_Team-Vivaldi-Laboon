@@ -16,7 +16,7 @@ For group1, we build a two-stage recommendation system.
     2. ItemCF  
     3. BM25  
     4. GRU4Rec  
-- stage2: we choose xgboost model as the rerank and retrieve 5 songs  
+- stage2: we choose xgboost model as the reranker and retrieve 5 songs  
 
 For group2, we simply use lastN songs and random new songs as our top5 recommendation.  
 - last5 songs (listening_order = [16, 17, 18, 19, 20])  
